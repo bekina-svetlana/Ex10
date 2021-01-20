@@ -19,7 +19,7 @@ std::string infix2postfix(std::string expression) {
                         vspom.pop();
                     }
                 } else if (expression[i] == '*' || expression[i] == '/') {
-                    while (!vspom.isEmpty() && vspom.get() 
+                    while (!vspom.isEmpty() && vspom.get()
                         != '(' && vspom.get() != '+' && vspom.get() != '-') {
                         drvid += vspom.get();
                         drvid += ' ';
@@ -47,7 +47,7 @@ std::string infix2postfix(std::string expression) {
                     i--;
                     drvid += ' ';
                 }
-                if (expression[i] != ')' && expression[i] != ' ' 
+                if (expression[i] != ')' && expression[i] != ' '
                     && !isdigit(expression[i])) {
                     vspom.push(expression[i]);
                 }
