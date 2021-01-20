@@ -3,8 +3,7 @@
 #include "MyStack.h"
 #include <cctype>
 
-std::string infix2postfix(std::string expression)
-{
+std::string infix2postfix(std::string expression) {
     MyStack<char> vspom(expression.length());
     std::string drvid;
     for (int i = 0; i <= expression.length(); i++) {
@@ -20,7 +19,8 @@ std::string infix2postfix(std::string expression)
                         vspom.pop();
                     }
                 } else if (expression[i] == '*' || expression[i] == '/') {
-                    while (!vspom.isEmpty() && vspom.get() != '(' && vspom.get() != '+' && vspom.get() != '-') {
+                    while (!vspom.isEmpty() && vspom.get() 
+                        != '(' && vspom.get() != '+' && vspom.get() != '-') {
                         drvid += vspom.get();
                         drvid += ' ';
                         vspom.pop();
@@ -28,7 +28,7 @@ std::string infix2postfix(std::string expression)
                 } else if (expression[i] == ')') {
                     while (vspom.get() != '(') {
                         drvid += vspom.get();
-						drvid += ' ';
+                        drvid += ' ';
                         vspom.pop();
                     }
                     vspom.pop();
@@ -44,10 +44,11 @@ std::string infix2postfix(std::string expression)
                         drvid += expression[i];
                         i++;
                     }
-					i--;
+                    i--;
                     drvid += ' ';
                 }
-                if (expression[i] != ')' && expression[i] != ' ' && !isdigit(expression[i])) {
+                if (expression[i] != ')' && expression[i] != ' ' 
+                    && !isdigit(expression[i])) {
                     vspom.push(expression[i]);
                 }
             } else {
