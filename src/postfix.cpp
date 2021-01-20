@@ -11,8 +11,7 @@ std::string infix2postfix(std::string expression)
         if (isdigit(expression[i])) {
             drvid += expression[i];
             drvid += ' ';
-        }
-        else if (expression[i] != ' ') {
+        } else if (expression[i] != ' ') {
             if (!vspom.isEmpty()) {
                 if (expression[i] == '+' || expression[i] == '-') {
                     while (!vspom.isEmpty() && vspom.get() != '(') {
@@ -20,42 +19,38 @@ std::string infix2postfix(std::string expression)
                         drvid += ' ';
                         vspom.pop();
                     }
-                }
-                else if (expression[i] == '*' || expression[i] == '/') {
+                } else if (expression[i] == '*' || expression[i] == '/') {
                     while (!vspom.isEmpty() && vspom.get() != '(' && vspom.get() != '+' && vspom.get() != '-') {
                         drvid += vspom.get();
                         drvid += ' ';
                         vspom.pop();
                     }
-                }
-                else if (expression[i] == ')') {
+                } else if (expression[i] == ')') {
                     while (vspom.get() != '(') {
                         drvid += vspom.get();
 						drvid += ' ';
                         vspom.pop();
                     }
                     vspom.pop();
-                }
-                else if (expression[i] == '\0') {
+                } else if (expression[i] == '\0') {
                     while (!vspom.isEmpty()) {
                         drvid += vspom.get();
                         drvid += ' ';
                         vspom.pop();
                     }
-                }
-                else if (expression[i] == '.') {
+                } else if (expression[i] == '.') {
                     drvid.erase(drvid.length() - 1);
-                    while (expression[i] != ' ' && expression[i] != '\0') {
+                    while (isdigit(expression[i]) || expression[i] == '.') {
                         drvid += expression[i];
                         i++;
                     }
+					i--;
                     drvid += ' ';
                 }
-                if (expression[i] != ')' && expression[i] != ' ' && expression[i] != '.') {
+                if (expression[i] != ')' && expression[i] != ' ' && !isdigit(expression[i])) {
                     vspom.push(expression[i]);
                 }
-            }
-            else {
+            } else {
                 vspom.push(expression[i]);
             }
         }

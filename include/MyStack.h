@@ -42,8 +42,7 @@ class MyStack {
         if (!isFull()) {
             stack[top_index] = value;
             top_index++;
-        }
-        else {
+        } else {
             std::cout << "Stack is full\n";
         }
     }
